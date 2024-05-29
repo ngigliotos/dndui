@@ -1,0 +1,81 @@
+.stat-parent-div {
+  position: relative;
+  margin-left: 0px;
+  margin-bottom: 10px;
+}
+
+.stat-image {
+  content: url("../assets/images/abs.png");
+  height: auto;
+  max-width: 120px;
+}
+
+.input-container {
+  position: absolute;
+  top: 45%;
+  left: 36.5px; /* Adjust the left value as needed */
+  transform: translateY(-50%);
+  z-index: 1;
+}
+
+.small-input-container {
+  position: absolute;
+  top: 80%;
+  left: 40px; /* Adjust the left value as needed */
+  transform: translateY(-50%);
+  z-index: 1;
+}
+
+.stat-name {
+  position: absolute;
+  top: 15%;
+  left: 10px; /* Adjust the left value as needed */
+  transform: translateY(-50%);
+  z-index: 1;
+  color: #000;
+}
+
+.stat-input {
+  max-height: 45px;
+  max-width: 45px;
+  text-align: center;
+  background-color: blanchedalmond;
+  color: black;
+  font-family: "cali";
+  font-weight: bold;
+  font-size: larger;
+}
+
+.small-stat-input {
+  max-height: 40px;
+  max-width: 40px;
+  text-align: center;
+  background-color: blanchedalmond;
+  color: black;
+  font-family: "cali";
+  font-weight: bold;
+  font-size: medium;
+  border-radius: 100%;
+}
+
+.stat-input:hover,
+.stat-input:focus,
+.small-stat-input:hover,
+.small-stat-input:focus {
+  background-color: blanchedalmond;
+}
+
+.stat-block-container {
+  display: flex;
+  flex-direction: column; /* Render components vertically */
+  margin-top: 20px;
+}
+
+.middle-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.input-with-label {
+  margin-bottom: 5px; /* Add some space between input and StatBlocks */
+}

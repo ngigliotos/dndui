@@ -1,0 +1,716 @@
+@font-face {
+  font-family: "Vinque";
+  src: url("./assets/fonts/BLKCHCRY.TTF");
+}
+
+@font-face {
+  font-family: "bookletter";
+  src: url("./assets/fonts/goudy-bookletter-1911.regular.otf");
+}
+
+@font-face {
+  font-family: "cali";
+  src: url("./assets/fonts/calligraserif.ttf");
+}
+
+body {
+  margin: 0;
+  background: #242121;
+}
+
+.body {
+  font-family: "Vinque";
+  background: #242121;
+  font-size: medium;
+}
+
+.header-content {
+  position: fixed;
+  border-radius: 10px;
+  padding: 10px;
+  z-index: 5;
+  background: #000000;
+}
+
+.page-container {
+  margin-top: 60px;
+}
+
+.class-link-container {
+  display: flex;
+  width: 100%;
+  height: fit-content;
+  justify-content: space-between;
+}
+
+.input-with-label {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-left: 5px; /* Adjust the margin as needed */
+}
+
+.checkbox-with-label {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-left: 5px; /* Adjust the margin as needed */
+}
+
+.checkbox-with-label label {
+  margin-bottom: 10px; /* Adjust the spacing between label and input */
+  color: #eba7b8;
+}
+
+.add-spells-button {
+  min-height: 37.88px;
+
+  font-family: "Vinque";
+  letter-spacing: 1px;
+  font-size: small;
+  text-align: center;
+  font-weight: 100;
+  color: #eba7b8;
+}
+
+.name-level-container {
+  display: inline-flex;
+}
+
+.input-with-label label,
+.checkbox-with-label label {
+  margin-bottom: 10px; /* Adjust the spacing between label and input */
+  color: #eba7b8;
+}
+
+.input-with-label input:hover {
+  background-color: rgb(92, 89, 85);
+  border-color: blanchedalmond;
+}
+
+.input-with-label input:focus {
+  background-color: rgb(92, 89, 85);
+  border-color: blanchedalmond;
+}
+
+.level-input {
+  max-width: 50px;
+  text-align: center;
+  border-radius: 5px;
+  margin-left: 0; /* Adjust the margin-left to 0 to align with the label */
+  color: black;
+  background-color: rgb(92, 89, 85);
+  font-family: "cali";
+  font-weight: bold;
+  font-size: large;
+}
+
+.class-input {
+  max-width: 150px;
+  text-align: left;
+  border-radius: 5px;
+  margin-left: 0; /* Adjust the margin-left to 0 to align with the label */
+  color: black;
+  font-family: "Vinque";
+  background-color: rgb(92, 89, 85);
+  font-size: large;
+  letter-spacing: 1px;
+}
+
+.name-input {
+  text-align: left;
+  border-radius: 5px;
+  margin-left: 0; /* Adjust the margin-left to 0 to align with the label */
+  color: black;
+  font-family: "Vinque";
+  background-color: rgb(92, 89, 85);
+  font-size: large;
+}
+
+.start-new-char-button {
+  font-family: "Vinque";
+  background: #242121;
+  color: #eba7b8;
+  margin-right: 2.5px;
+  margin-left: 2.5px;
+  letter-spacing: 1px;
+}
+
+.start-new-char-button-selected {
+  font-family: "Vinque";
+  background: #000000;
+  color: #eba7b8;
+  margin-right: 2.5px;
+  margin-left: 2.5px;
+  letter-spacing: 1px;
+}
+
+.start-new-char-button-selected:hover {
+  background-color: #000 !important;
+  border-color: rgb(215, 0, 223) !important;
+  color: #eba7b8 !important;
+}
+
+.start-new-char-button:hover {
+  border-color: rgb(215, 0, 223) !important;
+  color: #eba7b8 !important;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.bottom-right-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+}
+
+.char-submit-button {
+  font-family: "Vinque";
+  background: #242121;
+  color: #eba7b8;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+}
+
+.char-delete-button {
+  font-family: "Vinque";
+  background: #242121;
+  color: #eba7b8;
+  position: fixed;
+  bottom: 20px;
+  right: 150px;
+}
+
+.char-delete-alert {
+  max-width: 36%;
+}
+
+.prof-checkbox-container {
+  margin-left: 20px;
+  margin-top: 2px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  border: 2px solid #d9d9d9; /* Adjust border color and thickness as needed */
+  padding: 8px; /* Add padding for better spacing */
+  border-radius: 20px; /* Optional: Add border radius for rounded corners */
+}
+
+.prof-checkboxes {
+  font-family: "Vinque";
+  color: #eba7b8;
+  margin-top: 10px;
+  letter-spacing: 2px;
+}
+
+.prof-label {
+  display: flex;
+  flex-direction: column;
+  margin-left: 17px;
+  align-items: center;
+  margin-top: 15px;
+  color: #eba7b8;
+  letter-spacing: 1px;
+  font-size: large;
+}
+
+.character-text {
+  font-family: "Vinque";
+  margin-top: 20px;
+  margin-left: 20px;
+  letter-spacing: 1px;
+}
+
+.prof-num-container {
+  display: flex;
+  align-items: flex-start;
+  margin-left: 20px;
+  margin-top: 20px;
+  border: 2px solid #d9d9d9;
+  border-radius: 20px; /* Optional: Add border radius for rounded corners */
+}
+
+.prof-num-input {
+  width: 35px; /* Adjust as needed */
+  height: 35px; /* Adjust as needed */
+  text-align: center;
+  background-color: #242121;
+  color: black;
+  margin-top: 3.5px;
+  margin-left: 10px;
+  background-color: #494444;
+  font-size: larger;
+  font-family: "cali";
+  font-weight: bold;
+}
+
+.prof-num-label {
+  padding: 11px 10px;
+  border-radius: 5px;
+  color: #eba7b8;
+  white-space: nowrap;
+  letter-spacing: 1px;
+}
+
+.extra-stats {
+  margin-top: 20px;
+  margin-left: 20px;
+  display: flex;
+  flex-direction: row;
+  border-radius: 20px;
+  border: 2px solid #d9d9d9;
+  height: fit-content;
+  justify-content: space-between;
+}
+
+.extra-stat-parent-div {
+  position: relative;
+  margin-left: 0px;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+.ac-image {
+  display: flex;
+  content: url("./assets/images/ac.png");
+  height: auto;
+  width: 135px;
+  height: 135px;
+}
+
+.ac-name {
+  display: flex;
+  z-index: 1;
+  font-size: 15px;
+  color: #000;
+  justify-content: center;
+  color: #eba7b8;
+  font-size: large;
+  letter-spacing: 1px;
+}
+
+.ac-input-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 5px;
+}
+
+.ac-input {
+  height: 30px;
+  width: 60px;
+  text-align: center;
+  background-color: #494444;
+  color: black;
+  font-family: "cali";
+  font-weight: bold;
+  font-size: larger;
+}
+
+.move-image {
+  display: flex;
+  content: url("./assets/images/move.png");
+  height: auto;
+  width: 135px;
+  height: 135px;
+}
+
+.move-name {
+  display: flex;
+  z-index: 1;
+  font-size: 15px;
+  color: #000;
+  justify-content: center;
+  color: #eba7b8;
+  font-size: large;
+  letter-spacing: 1px;
+}
+
+.move-input-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 5px;
+}
+
+.move-input {
+  height: 30px;
+  width: 60px;
+  text-align: center;
+  background-color: #494444;
+  color: black;
+  font-family: "cali";
+  font-weight: bold;
+  font-size: larger;
+}
+
+.init-image {
+  display: flex;
+  content: url("./assets/images/init.png");
+  height: auto;
+  width: 135px;
+  height: 135px;
+  transform: scaleX(-1);
+}
+
+.init-name {
+  display: flex;
+  z-index: 1;
+  font-size: 15px;
+  color: #000;
+  color: #eba7b8;
+  font-size: large;
+  letter-spacing: 1px;
+  justify-content: center;
+}
+
+.init-input-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 5px;
+}
+
+.init-input {
+  height: 30px;
+  width: 60px;
+  text-align: center;
+  background-color: #494444;
+  color: black;
+  font-family: "cali";
+  font-weight: bold;
+  font-size: larger;
+}
+
+/* Dont like setting min width but its the only way I could fix the expanding issue */
+.hp-stat-attack-container {
+  min-width: 472px;
+}
+
+.table-attack {
+  min-width: min-content;
+  margin-top: 20px;
+  margin-left: 20px;
+}
+
+.weapon-table-input {
+  font-family: "Vinque";
+  letter-spacing: 1px;
+  text-align: center;
+  background-color: #494444;
+  font-size: large;
+  color: black;
+  width: 118.67px !important;
+}
+
+.table-input {
+  font-family: "cali";
+  letter-spacing: 1px;
+  text-align: center;
+  background-color: #494444;
+  font-size: large;
+  color: black;
+  font-weight: bold;
+}
+
+.attack-title {
+  font-family: "Vinque";
+  letter-spacing: 1px;
+  text-align: center;
+  font-weight: 100;
+  color: #eba7b8;
+}
+
+.table-attack th {
+  text-align: center !important;
+  max-width: 100% !important;
+}
+
+.attack-add-button {
+  font-family: "Vinque";
+  letter-spacing: 1px;
+  font-size: small;
+  text-align: center;
+  font-weight: 100;
+  color: #eba7b8;
+  margin-left: 20px;
+}
+
+.attack-remove-button {
+  font-family: "Vinque";
+  letter-spacing: 1px;
+  font-size: small;
+  text-align: center;
+  font-weight: 100;
+  color: #eba7b8;
+  float: right;
+}
+
+.stand-out-text {
+  color: #ff9191;
+}
+
+.spell-dropdown {
+  font-family: "bookletter";
+  color: #9e9e9e;
+}
+
+.spell-table {
+  margin-top: 30px;
+}
+
+.spell-table td {
+  font-family: "bookletter";
+  color: #9e9e9e;
+  font-size: large;
+  letter-spacing: 1px;
+}
+
+.test {
+  margin-top: 60px;
+}
+
+.spell-title {
+  font-family: "Vinque";
+  letter-spacing: 1px;
+  text-align: center;
+  font-weight: 100;
+  color: #eba7b8;
+  font-size: large;
+}
+
+.spell-filter-input {
+  max-width: 200px;
+  font-family: "Vinque";
+  letter-spacing: 1px;
+  font-weight: 100;
+}
+
+.char-spell-info-col {
+  border-left: solid 2px white;
+  border-right: solid 2px white;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.char-spell-info-col-last {
+  border-left: solid 2px white;
+  border-right: solid 2px white;
+  border-bottom: solid 2px white;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.char-spell-row-container {
+  border-top: solid 2px white;
+
+  border-radius: 10px;
+}
+
+.char-spell-auto {
+  width: 100%;
+}
+
+.char-spell-info-label {
+  font-family: "Vinque";
+  letter-spacing: 1px;
+  text-align: center;
+  font-weight: 100;
+  color: #eba7b8;
+  align-self: center;
+  padding: 5px 0px;
+  font-size: 20px;
+}
+
+.char-spell-row-totals {
+  display: flex;
+  flex-direction: row;
+}
+
+.char-max-spell-container {
+  display: flex;
+  flex-direction: row;
+  margin-left: 10.5%;
+}
+
+.char-spell-max-input {
+  font-family: "cali";
+  font-size: 20px;
+  font-weight: bold;
+  max-width: 20%;
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid #eba7b8;
+  margin-bottom: 2px;
+  border-radius: 0px;
+  text-align: center;
+  height: 20px;
+  color: #c9c6c6;
+}
+
+.spell-slots {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 0px 2px;
+  margin-bottom: 2px;
+  color: #eba7b8;
+  font-family: "Vinque";
+  letter-spacing: 1px;
+  font-size: 20px;
+}
+
+.char-add-new-spell {
+  display: flex;
+  flex-direction: row;
+}
+
+.char-add-new-spell input {
+  max-width: 100%;
+}
+
+.char-add-new-spell label {
+  font-family: "Vinque";
+  letter-spacing: 1px;
+  color: #eba7b8;
+  align-self: center;
+  padding: 5px 10px;
+  font-size: 20px;
+}
+
+.char-add-new-spell-select {
+  padding: 5px 0px;
+  width: 82.7%;
+  height: fit-content;
+}
+
+.char-add-new-spell-select .ant-select-selection-item {
+  font-family: "Vinque";
+  letter-spacing: 1px;
+  color: #eba7b8;
+  align-self: center;
+  padding: 5px 0px;
+  font-size: 25px;
+}
+
+.char-add-new-spell-select .ant-select-selection-item-content {
+  font-size: larger;
+}
+
+.char-add-spell-button {
+  font-family: "Vinque";
+  letter-spacing: 1px;
+  color: #eba7b8;
+}
+
+.char-spell-list-item {
+  justify-content: flex-start !important;
+}
+
+.char-spell-list-item-button {
+  width: 100%;
+  text-align: left;
+  border: none;
+  font-family: "Vinque";
+  letter-spacing: 1px;
+  color: #eba7b8;
+}
+
+.char-spell-list-remove-button {
+  color: rgb(126, 0, 0);
+}
+
+.char-spell-check-name {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+.char-spell-desc {
+  font-family: "Vinque";
+  letter-spacing: 1px;
+  color: #eba7b8;
+  font-size: large;
+  align-self: center;
+  margin-left: 16px;
+}
+
+.suggestions {
+  border: 1px solid #999;
+  border-top-width: 0;
+  list-style: none;
+  margin-top: 0;
+  overflow-y: auto;
+  padding-left: 0;
+  position: absolute;
+  z-index: 1 !important;
+  background: #242121;
+  letter-spacing: 1px;
+}
+
+.suggestions-max {
+  border: 1px solid #999;
+  border-top-width: 0;
+  list-style: none;
+  margin-top: 0;
+  overflow-y: auto;
+  padding-left: 0;
+  position: absolute;
+  z-index: 1 !important;
+  background: #242121;
+  letter-spacing: 1px;
+  max-height: 210px;
+}
+
+.suggestions li,
+.suggestions-max li {
+  padding: 0.5rem;
+}
+
+.suggestions li:hover,
+.suggestions-max li:hover {
+  background-color: #008f68;
+  color: #fae042;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.suggestions li:not(:last-of-type),
+.suggestions-max li:not(:last-of-type) {
+  border-bottom: 1px solid #999;
+}
+
+.spells-filter-checkbox {
+  font-family: "bookletter";
+  color: #eba7b8;
+  letter-spacing: 1px;
+  font-size: medium;
+}
+
+.ac-input:focus,
+.ac-input:hover,
+.move-input:focus,
+.move-input:hover,
+.init-input:focus,
+.init-input:hover,
+.prof-num-input:focus,
+.prof-num-input:hover,
+.table-input:focus,
+.table-input:hover,
+.weapon-table-input:focus,
+.weapon-table-input:hover {
+  border-color: white !important;
+  background-color: #494444;
+}
+
+.char-spell-max-input:focus,
+.char-spell-max-input:hover {
+  outline: none;
+  background-color: #494444;
+  border-bottom: 2px solid #eba7b8;
+}

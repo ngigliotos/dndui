@@ -1,0 +1,133 @@
+.classes-row-container {
+  border-top: solid 2px white;
+
+  border-radius: 10px;
+}
+
+.class-col {
+  border-left: solid 2px white;
+  border-right: solid 2px white;
+  border-radius: 10px;
+}
+
+.class-summary-container {
+  text-align: center;
+}
+
+.classes-container {
+  border-bottom: solid 2px white;
+  border-radius: 10px;
+  margin-top: 60px;
+}
+
+.class-name {
+  font-family: "Vinque";
+  color: #eba7b8;
+  font-size: 40px;
+}
+
+.class-info {
+  font-family: "Vinque";
+  color: #eba7b8;
+  font-size: 20px;
+  letter-spacing: 1px;
+  margin-bottom: 10px;
+}
+
+.class-desc {
+  font-family: "bookletter";
+  color: #9e9e9e;
+  font-size: larger;
+  letter-spacing: 1px;
+  margin-top: 15px;
+}
+
+.class-info-name {
+  font-family: "Vinque";
+  color: #eba7b8;
+  font-size: 60px;
+  letter-spacing: 1px;
+}
+
+.class-table {
+  table-layout: auto;
+}
+
+.class-table td {
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  color: #eba7b8;
+  font-size: large;
+  letter-spacing: 1px;
+  padding-top: 5px !important;
+  padding-bottom: 5px !important;
+  width: auto;
+}
+
+.class-start-eq {
+  font-family: "Vinque";
+  color: #eba7b8;
+  font-size: 30px;
+}
+
+.class-list-item {
+  font-family: "bookletter";
+  color: #9e9e9e;
+  font-size: large;
+  letter-spacing: 1px;
+}
+
+.class-table-title {
+  font-family: "Vinque";
+  color: #eba7b8;
+  font-size: 30px;
+  letter-spacing: 1px;
+  display: block;
+}
+
+.class-start-eq-list {
+  border: solid 2px white;
+  border-radius: 10px;
+  margin-top: 10px;
+  padding: 10px;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.class-start-info-container {
+  display: flex;
+  flex-direction: row;
+  border-radius: 10px;
+  margin-top: 10px;
+}
+
+.class-unlocked-feature-link {
+  font-family: "Vinque";
+  color: #eba7b8;
+}
+
+.class-features-header {
+  margin-top: 20px;
+  font-family: "Vinque";
+  color: #eba7b8;
+  font-size: 30px;
+  border-bottom: solid 2px white;
+}
+
+.class-feature-title {
+  font-family: "Vinque";
+  color: #eba7b8;
+  font-size: 25px;
+  letter-spacing: 1px;
+}
+
+.class-feature-desc {
+  font-family: "bookletter";
+  color: #9e9e9e;
+  font-size: large;
+  letter-spacing: 1px;
+}
+
+.class-feature-container {
+  margin-bottom: 20px;
+}
