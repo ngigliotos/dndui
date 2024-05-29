@@ -13,7 +13,7 @@ All scripts are distributed under the MIT license.
 
 ### Assets
 
-Unless mentioned otherwise, the art files under `/images` not available for personal or commercial use. This is true for the files `ac.png`, `init.png`, and `move.png`.
+Unless mentioned otherwise, the art files `ac.png`, `init.png`, and `move.png` under `/images` are not available for personal or commercial use.
 
 - Artist: Linh Lê
 - Copyright: Linh Lê, ngigliotos
