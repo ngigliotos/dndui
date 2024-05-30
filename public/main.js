@@ -1,5 +1,5 @@
 const { app, BrowserWindow, ipcMain, Menu, MenuItem } = require("electron");
-// const url = require("url");
+const url = require("url");
 const path = require("path");
 
 require("@electron/remote/main").initialize();

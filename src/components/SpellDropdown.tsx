@@ -1,11 +1,14 @@
 import { Button, Checkbox, List } from "antd";
 import { useState } from "react";
 import { UseFormReturn } from "react-hook-form";
+import { charactersSlice } from "../store/Characters";
+import { useAppDispatch } from "../store/store";
 
 export function SpellDropdown(props: {
   spell: ISpell;
   methods: UseFormReturn<ICharacter, any, undefined>;
 }) {
+  const dispatch = useAppDispatch();
   const [expandDropdown, setExpandDropdown] = useState(false);
   //Can probably pass this down from parent, but just to be safe I did it like this
   const watchSpells = props.methods.watch("spells");
@@ -31,13 +34,12 @@ export function SpellDropdown(props: {
           <Button
             className="char-spell-list-remove-button"
             onClick={(e) => {
-              props.methods.setValue(
-                "spells",
-                watchSpells.filter(
-                  (spell) =>
-                    spell.toLowerCase() !== props.spell.name.toLowerCase()
-                )
+              let char = props.methods.getValues();
+              char.spells = watchSpells.filter(
+                (spell) =>
+                  spell.toLowerCase() !== props.spell.name.toLowerCase()
               );
+              dispatch(charactersSlice.actions.addCharacter(char));
             }}
           >
             X
