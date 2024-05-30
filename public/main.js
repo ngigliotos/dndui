@@ -1,4 +1,4 @@
-const { app, BrowserWindow, ipcMain } = require("electron");
+const { app, BrowserWindow, ipcMain, Menu, MenuItem } = require("electron");
 const path = require("path");
 
 require("@electron/remote/main").initialize();
@@ -16,6 +16,33 @@ function createWindow() {
     },
     frame: false,
   });
+
+  const menu = new Menu();
+  menu.append(
+    new MenuItem({
+      accelerator: `Ctrl+W`,
+      click: () => {
+        win.webContents.send("close-keybind-triggered");
+      },
+    })
+  );
+  menu.append(
+    new MenuItem({
+      accelerator: `Ctrl+Shift+I`,
+      click: () => {
+        win.webContents.openDevTools();
+      },
+    })
+  );
+  menu.append(
+    new MenuItem({
+      accelerator: `Ctrl+R`,
+      click: () => {
+        win.webContents.send("refresh-keybind-triggered");
+      },
+    })
+  );
+  win.setMenu(menu);
 
   //For release builds
   // const urlLocation = url.format({

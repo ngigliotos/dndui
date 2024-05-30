@@ -1,6 +1,6 @@
 import { Button, Modal, Typography } from "antd";
 import StatBlock from "../components/StatBlock";
-import { Link, useBlocker, useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { charactersSlice, fetchCharacters } from "../store/Characters";
 import { useSelector } from "react-redux";
 import { store, useAppDispatch } from "../store/store";
@@ -62,17 +62,6 @@ export function Character(props: {
   const [classOptions, setClassOptions] = useState<string[]>([]);
   const [currClass, setCurrClass] = useState<string>("");
   const [showDeleteModal, setShowDeleteModal] = useState(false);
-
-  //On Page change from character send new char data into state so the
-  //user doesnt have to re-edit it
-  useBlocker(() => {
-    console.log("ran");
-    let character = methods.getValues();
-    if (fs.existsSync(`./saved/characters/${character.id}.json`)) {
-      dispatch(charactersSlice.actions.addCharacter(character));
-    }
-    return false;
-  });
 
   const onSubmit = handleSubmit((data) => {
     if (!data.id) {
