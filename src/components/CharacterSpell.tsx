@@ -1,7 +1,7 @@
 import { Button, ConfigProvider, Input, List } from "antd";
 import SpellDropdown from "./SpellDropdown";
 
-import { memo, useEffect, useMemo, useState } from "react";
+import { memo, useCallback, useEffect, useMemo, useState } from "react";
 import { Controller, UseFormReturn } from "react-hook-form";
 import Suggestions from "./Suggestions";
 import { useSelector } from "react-redux";
@@ -29,27 +29,38 @@ const CharacterSpell = memo(function CharacterSpellFunc(props: {
   const [currSpellName, setCurrSpellName] = useState<string>("");
   const watchSpells = props.watchSpells;
 
+  const onSpellchange = useCallback(
+    (value: string) => {
+      setFilteredSpells(
+        Object.keys(spells).filter(
+          (spell) =>
+            spells[spell].level === props.spellLevel &&
+            (!props.onlyShowClassSpells ||
+              spells[spell].classes.includes(
+                props.methods.getValues("class")
+              ) ||
+              !(props.methods.getValues("class").toLowerCase() in classes)) &&
+            spell.toLowerCase().indexOf(value.toLowerCase()) > -1
+        )
+      );
+      setCurrSpellName(value);
+    },
+    [
+      classes,
+      props.methods,
+      props.onlyShowClassSpells,
+      props.spellLevel,
+      spells,
+    ]
+  );
   //Need this to refresh filtered spells before user clicks on dropdown
   //after toggling the checkbox
   useEffect(() => {
     onSpellchange(currSpellName);
-  }, [props.onlyShowClassSpells, props.currClassName]);
+  }, [props.onlyShowClassSpells, props.currClassName, currSpellName, onSpellchange]);
 
   //This is a massive if beneath a filter. It decides which spells we are showing in the
   //spells autocomplete for a character.
-  const onSpellchange = (value: string) => {
-    setFilteredSpells(
-      Object.keys(spells).filter(
-        (spell) =>
-          spells[spell].level === props.spellLevel &&
-          (!props.onlyShowClassSpells ||
-            spells[spell].classes.includes(props.methods.getValues("class")) ||
-            !(props.methods.getValues("class").toLowerCase() in classes)) &&
-          spell.toLowerCase().indexOf(value.toLowerCase()) > -1
-      )
-    );
-    setCurrSpellName(value);
-  };
 
   const currSpells = useMemo(
     () =>
@@ -58,7 +69,7 @@ const CharacterSpell = memo(function CharacterSpellFunc(props: {
         .map((spell: string) => {
           return spells[spell];
         }),
-    [watchSpells]
+    [watchSpells, spells, props.spellLevel]
   );
 
   const enterFunction = (e: React.KeyboardEvent<HTMLInputElement>): boolean => {

@@ -471,6 +471,8 @@ input::-webkit-inner-spin-button {
 
 .stand-out-text {
   color: #ff9191;
+  font-family: "bookletter";
+  font-size: large;
 }
 
 .spell-dropdown {

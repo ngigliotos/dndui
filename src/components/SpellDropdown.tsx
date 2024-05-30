@@ -46,7 +46,7 @@ export function SpellDropdown(props: {
         {expandDropdown && (
           <p className="char-spell-desc">
             {props.spell.desc
-              .replace(/{@.*?\ /g, "")
+              .replace(/{@.*? /g, "")
               .replace(/\|.*?}/g, "")
               .replace("}", "")}
           </p>

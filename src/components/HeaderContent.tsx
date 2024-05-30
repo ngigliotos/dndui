@@ -50,8 +50,6 @@ export function HeaderContent() {
       });
   }, [dispatch]);
 
-  useEffect(() => {}, [window.location.href]);
-
   return (
     <div className="header-content">
       <Link to={ROUTES.spells} className="header-link">

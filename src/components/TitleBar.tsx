@@ -28,22 +28,21 @@ export function TitleBar() {
     setIsFocused(true);
   });
 
-  const handleUnload = (e: BeforeUnloadEvent) => {
-    if (
-      !quitWithoutSaving &&
-      JSON.stringify(characters) !== JSON.stringify(initialCharacters)
-    ) {
-      e.preventDefault();
-      setShowModal(true);
-      return;
-    }
-  };
-
   useEffect(() => {
+    const handleUnload = (e: BeforeUnloadEvent) => {
+      if (
+        !quitWithoutSaving &&
+        JSON.stringify(characters) !== JSON.stringify(initialCharacters)
+      ) {
+        e.preventDefault();
+        setShowModal(true);
+        return;
+      }
+    };
     window.addEventListener("beforeunload", handleUnload);
 
     return () => window.removeEventListener("beforeunload", handleUnload);
-  }, [handleUnload]);
+  }, [initialCharacters, characters, quitWithoutSaving]);
 
   //Tried doing ternary class setting with isFocused but that led to a lag
   //of the button changing vs the bar changing that I couldnt figure out how
