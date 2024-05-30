@@ -14,6 +14,33 @@ export function Spells() {
     );
   };
 
+  const setLevelText = (level: string) => {
+    switch (level) {
+      case "0":
+        return "Cantrip";
+      case "1":
+        return "1st";
+      case "2":
+        return "2nd";
+      case "3":
+        return "3rd";
+      case "4":
+        return "4th";
+      case "5":
+        return "5th";
+      case "6":
+        return "6th";
+      case "7":
+        return "7th";
+      case "8":
+        return "8th";
+      case "9":
+        return "9TH";
+      default:
+        return "";
+    }
+  };
+
   const options: ColumnProps<ISpell>[] = [
     {
       title: <Typography.Text className="spell-title">Level</Typography.Text>,
@@ -24,7 +51,7 @@ export function Spells() {
         compare: (a, b) => Number(a.level) - Number(b.level),
         multiple: 2,
       },
-      render: (text, record) => (record.level === "0" ? "Cantrip" : text),
+      render: (text, record) => setLevelText(record.level),
       filters: [
         { text: "Cantrip", value: "0" },
         { text: "1", value: "1" },
@@ -102,7 +129,8 @@ export function Spells() {
       render: (text, record) => record.classes.join(", "),
       filters: classes,
       onFilter: (value, record) => {
-        return record.classes.includes(value as ClassNames);
+        console.log(record);
+        return record.classes.includes((value as ClassNames).toLowerCase());
       },
     },
     {
@@ -115,11 +143,25 @@ export function Spells() {
     let splitdesc = desc.split(/{([^}]*)}/);
     let parsedDesc: (JSX.Element | string)[] = [];
     splitdesc.forEach((value) => {
-      if (value.startsWith("@damage ")) {
-        let damageStr = value.split(" ")[1];
+      if (value.startsWith("@dice ")) {
+        parsedDesc.push(value.split(" ")[1]);
+      } else if (
+        value.startsWith("@damage ") ||
+        value.startsWith("@condition ") ||
+        value.startsWith("@spell ") ||
+        value.startsWith("@action ") ||
+        value.startsWith("@spell ") ||
+        value.startsWith("@item ") ||
+        value.startsWith("@race ") ||
+        value.startsWith("@skill ") ||
+        value.startsWith("@creature")
+      ) {
+        //Remove only first index of split then rejoin
+        let valueToAdd = value.split(" ");
+        valueToAdd.shift();
         parsedDesc.push(
           <Typography.Text className="stand-out-text">
-            {damageStr}
+            {valueToAdd.join(" ").split("|")[0]}
           </Typography.Text>
         );
       } else {
@@ -143,13 +185,20 @@ export function Spells() {
         placeholder="Type spell name"
       ></Input>
       <Table
+        scroll={{ x: "max-content" }}
         className="spell-table"
         rowKey={(record) => record.name}
         columns={options}
         dataSource={filteredSpells()}
         pagination={{ pageSize: 15 }}
         expandable={{
-          expandedRowRender: (record) => replaceDamage(record.desc),
+          expandedRowRender: (record) => {
+            return (
+              <Typography.Text className="spell-desc">
+                {replaceDamage(record.desc)}
+              </Typography.Text>
+            );
+          },
           expandRowByClick: true,
         }}
       ></Table>
