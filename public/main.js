@@ -45,14 +45,14 @@ function createWindow() {
   win.setMenu(menu);
 
   //For release builds
-  const urlLocation = url.format({
-    pathname: path.join(__dirname, "../build/index.html"), // Adjust path here
-    protocol: "file:",
-    slashes: true,
-  });
+  // const urlLocation = url.format({
+  //   pathname: path.join(__dirname, "../build/index.html"), // Adjust path here
+  //   protocol: "file:",
+  //   slashes: true,
+  // });
 
   //For local dev
-  // const urlLocation = "http://localhost:3000";
+  const urlLocation = "http://localhost:3000";
 
   //Event to close app
   win.loadURL(urlLocation);
