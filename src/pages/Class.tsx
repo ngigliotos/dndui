@@ -23,7 +23,7 @@ export function Class() {
 
   const scrollWithOffset = (el: HTMLElement) => {
     const yCoordinate = el.getBoundingClientRect().top + window.scrollY;
-    const yOffset = -50;
+    const yOffset = -70;
     window.scrollTo({ top: yCoordinate + yOffset, behavior: "smooth" });
   };
 
