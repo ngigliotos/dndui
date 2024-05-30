@@ -4,6 +4,7 @@ import "./index.css";
 import "./components/StatBlock.css";
 import "./components/Health.css";
 import "./pages/classes.css";
+import "./components/titleBar.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 

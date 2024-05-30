@@ -75,6 +75,7 @@ export const getSpells = async (): Promise<any> => {
         if (typeof spellDesc === "string") {
           return spellDesc;
         }
+        return undefined;
       })
       .filter((entry: any) => entry !== undefined)
       .join(" ");

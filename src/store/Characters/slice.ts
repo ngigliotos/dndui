@@ -1,7 +1,7 @@
-import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { getCharacters } from "./api";
 import {
-  ICharactersSliceState,
+  addCharacter,
   getCharactersPending,
   getCharactersSuccess,
   initialState,
@@ -20,6 +20,7 @@ export const charactersSlice = createSlice({
   initialState,
   reducers: {
     removeCharacter,
+    addCharacter,
   },
   extraReducers: (builder) => {
     builder.addCase(fetchCharacters.pending, getCharactersPending);

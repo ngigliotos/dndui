@@ -1,14 +1,9 @@
-import { Alert, Button, Input, Modal, Space, Typography } from "antd";
+import { Button, Modal, Typography } from "antd";
 import StatBlock from "../components/StatBlock";
-import { Link, useNavigate, useParams } from "react-router-dom";
-import {
-  charactersSlice,
-  fetchCharacters,
-  selectCharacters,
-  selectSpecificCharacter,
-} from "../store/Characters";
+import { Link, useBlocker, useNavigate, useParams } from "react-router-dom";
+import { charactersSlice, fetchCharacters } from "../store/Characters";
 import { useSelector } from "react-redux";
-import { RootState, store, useAppDispatch } from "../store/store";
+import { store, useAppDispatch } from "../store/store";
 import LabeledInput from "../components/LabeledInput";
 import ROUTES from "../constants/routes";
 import { emptyCharacter } from "../store/Characters/reducers";
@@ -22,7 +17,7 @@ import { useSelectSpells } from "../store/Spells";
 
 import CharacterSpellsGrid from "../components/CharacterSpellsGrid";
 import { selectClasses } from "../store/Classes";
-import { Controller, FormProvider, useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import Suggestions from "../components/Suggestions";
 import { ExportOutlined } from "@ant-design/icons";
 
@@ -34,7 +29,9 @@ export function Character(props: {
   const params: { id?: string } = useParams();
 
   const fs = window.require("fs");
+
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
 
   const character = params.id ? props.characters[params.id] : undefined;
 
@@ -45,12 +42,10 @@ export function Character(props: {
 
   const methods = useForm<ICharacter>({ reValidateMode: "onSubmit" });
   const {
-    register,
     setValue,
     handleSubmit,
     formState: { errors },
     reset,
-    control,
     getValues,
     watch,
   } = methods;
@@ -62,6 +57,30 @@ export function Character(props: {
     };
     reset(initialCharacter);
   }, [character, emptyCharacter, reset]);
+
+  const watchHasSpells = watch("hasSpells");
+  const watchClass = watch("class");
+  const watchChar = watch();
+
+  const spells = useSelectSpells();
+  const [spellOptions] = React.useState(
+    () => store.getState().spells.spellOptions
+  );
+  const classes = useSelector(selectClasses);
+  const [classOptions, setClassOptions] = useState<string[]>([]);
+  const [currClass, setCurrClass] = useState<string>("");
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+
+  //On Page change from character send new char data into state so the
+  //user doesnt have to re-edit it
+  useBlocker(() => {
+    console.log("ran");
+    let character = methods.getValues();
+    if (fs.existsSync(`./saved/characters/${character.id}.json`)) {
+      dispatch(charactersSlice.actions.addCharacter(character));
+    }
+    return false;
+  });
 
   const onSubmit = handleSubmit((data) => {
     if (!data.id) {
@@ -82,26 +101,20 @@ export function Character(props: {
       .catch(async (e) => {
         return true;
       });
+    dispatch(charactersSlice.actions.addCharacter(data));
   });
 
   const deleteCharacter = (id: string) => {
-    fs.unlinkSync(`./saved/characters/${id}.json`);
-    dispatch(charactersSlice.actions.removeCharacter(id));
+    if (fs.existsSync(`./saved/characters/${id}.json`)) {
+      fs.unlinkSync(`./saved/characters/${id}.json`);
+      dispatch(fetchCharacters())
+        .unwrap()
+        .catch(async (e) => {
+          return true;
+        });
+      dispatch(charactersSlice.actions.removeCharacter(id));
+    }
   };
-
-  const watchHasSpells = watch("hasSpells");
-  const watchClass = watch("class");
-
-  const spells = useSelectSpells();
-  const [spellOptions] = React.useState(
-    () => store.getState().spells.spellOptions
-  );
-  const classes = useSelector(selectClasses);
-  const [classOptions, setClassOptions] = useState<string[]>([]);
-  const [currClass, setCurrClass] = useState<string>("");
-  const [showDeleteModal, setShowDeleteModal] = useState(false);
-
-  const dispatch = useAppDispatch();
 
   //This complex class control flow exists because without it, the
   //input component is laggy.
@@ -127,7 +140,12 @@ export function Character(props: {
   }, [watchClass]);
 
   return (
-    <div className="page-container">
+    <div
+      onBlur={(e) => {
+        dispatch(charactersSlice.actions.addCharacter(watchChar));
+      }}
+      className="page-container"
+    >
       <div className="name-level-container">
         <LabeledInput
           methods={methods}
@@ -215,12 +233,77 @@ export function Character(props: {
           methods={methods}
           initialCharacter={initialCharacter}
         ></ExtraInfo>
+        <div style={{ width: "100%" }}>
+          <div style={{ display: "flex", flexDirection: "row" }}>
+            <div className="character-text-container">
+              <label>Languages</label>
+              <Controller
+                name={"languages"}
+                {...methods}
+                render={({ field }) => (
+                  <TextArea
+                    {...field}
+                    className="character-text"
+                    autoSize
+                    placeholder="Enter Languages"
+                    spellCheck={false}
+                  ></TextArea>
+                )}
+              />
+            </div>
 
-        <TextArea
-          className="character-text"
-          autoSize
-          placeholder="Enter any character details"
-        ></TextArea>
+            <div className="character-text-container">
+              <label>Items</label>
+              <Controller
+                name={"items"}
+                {...methods}
+                render={({ field }) => (
+                  <TextArea
+                    {...field}
+                    className="character-text"
+                    autoSize
+                    placeholder="Enter Items"
+                    spellCheck={false}
+                  ></TextArea>
+                )}
+              />
+            </div>
+          </div>
+
+          <div className="character-text-container">
+            <label>Weapon, armor, and tool proficiencies</label>
+            <Controller
+              name={"otherProfs"}
+              {...methods}
+              render={({ field }) => (
+                <TextArea
+                  {...field}
+                  className="character-text"
+                  autoSize
+                  placeholder="Amror, weapons, etc"
+                  spellCheck={false}
+                ></TextArea>
+              )}
+            />
+          </div>
+
+          <div className="character-text-container">
+            <label>Character Details</label>
+            <Controller
+              name={"details"}
+              {...methods}
+              render={({ field }) => (
+                <TextArea
+                  {...field}
+                  className="character-text"
+                  autoSize
+                  placeholder="Enter any character details"
+                  spellCheck={false}
+                ></TextArea>
+              )}
+            />
+          </div>
+        </div>
       </div>
       {watchHasSpells && (
         <CharacterSpellsGrid

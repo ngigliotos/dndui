@@ -1,4 +1,4 @@
-import { Button, Checkbox, Col, Row } from "antd";
+import { Checkbox, Col, Row } from "antd";
 import CharacterSpell from "./CharacterSpell";
 import { UseFormReturn } from "react-hook-form";
 import { useState } from "react";

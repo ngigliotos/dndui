@@ -18,6 +18,8 @@ export function ClassSummary(props: { classInfo: IClassInfo }) {
           return "Intelligence";
         case "cha":
           return "Charisma";
+        default:
+          return "";
       }
     });
   };

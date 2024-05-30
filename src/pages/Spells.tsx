@@ -1,18 +1,10 @@
-import { Button, Input, Table, Typography } from "antd";
-import { fetchSpells } from "../store/Spells/slice";
-import { useAppDispatch } from "../store/store";
-import { useSelector } from "react-redux";
+import { Input, Table, Typography } from "antd";
 import { ColumnProps } from "antd/es/table";
-import TextArea from "antd/es/input/TextArea";
-import { text } from "stream/consumers";
-import { Tuple } from "@reduxjs/toolkit";
-import React, { useState } from "react";
+import { useState } from "react";
 import { classes } from "../constants/classes";
 import { useSelectSpells } from "../store/Spells";
 
 export function Spells() {
-  const PAGELIMIT = 15;
-  const dispatch = useAppDispatch();
   const spells = useSelectSpells();
   const [filteredWord, setFilteredWord] = useState("");
 

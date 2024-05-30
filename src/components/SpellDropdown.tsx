@@ -9,7 +9,6 @@ export function SpellDropdown(props: {
   const [expandDropdown, setExpandDropdown] = useState(false);
   //Can probably pass this down from parent, but just to be safe I did it like this
   const watchSpells = props.methods.watch("spells");
-  const reg = /{@.*?\ /;
   return (
     <div>
       <List.Item

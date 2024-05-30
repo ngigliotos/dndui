@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { selectSpecificClass } from "../store/Classes";
 import { RootState } from "../store/store";
 import { List, Typography } from "antd";
