@@ -40,6 +40,7 @@ export function SpellDropdown(props: {
                   spell.toLowerCase() !== props.spell.name.toLowerCase()
               );
               dispatch(charactersSlice.actions.addCharacter(char));
+              props.methods.setValue("spells", char.spells);
             }}
           >
             X
