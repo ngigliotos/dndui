@@ -1,0 +1,91 @@
+.title-bar {
+  position: fixed;
+  z-index: 5;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 30px;
+  width: 100%;
+  background: #2c2828;
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-app-region: drag;
+  margin-bottom: 10px;
+}
+
+.title-bar-button {
+  max-height: 30px;
+  width: 48px !important;
+  border: none;
+  background: none !important;
+  border-radius: 0%;
+  box-shadow: none;
+  background: #2c2828;
+  color: #ffffff46;
+  -webkit-app-region: no-drag;
+}
+
+.title-bar-button-x {
+  max-height: 30px;
+  width: 48px !important;
+  border: none;
+  background: none !important;
+  border-radius: 0%;
+  box-shadow: none;
+  background: #2c2828;
+  color: #ffffff46;
+  -webkit-app-region: no-drag;
+}
+
+.title-bar-in-focus {
+  position: fixed;
+  z-index: 5;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 30px;
+  width: 100%;
+  background: #383838;
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-app-region: drag;
+}
+
+.title-bar-button-in-focus {
+  max-height: 30px;
+  width: 48px !important;
+  border: none;
+  background: none !important;
+  border-radius: 0%;
+  box-shadow: none;
+  color: #ffffff;
+  -webkit-app-region: no-drag;
+}
+
+.title-bar-button-x-in-focus {
+  max-height: 30px;
+  width: 48px !important;
+  border: none;
+  background: none !important;
+  border-radius: 0%;
+  box-shadow: none;
+  color: #ffffff;
+  -webkit-app-region: no-drag;
+}
+
+.title-bar span,
+.title-bar-in-focus span {
+  font-size: 100% !important;
+}
+
+.title-bar-button:hover,
+.title-bar-button-in-focus:hover {
+  background-color: #ffffff16 !important;
+  color: #ffffff !important;
+}
+
+.title-bar-button-x:hover,
+.title-bar-button-x-in-focus:hover {
+  background-color: #ff0505c6 !important;
+  color: #ffffff !important;
+}

@@ -20,6 +20,7 @@
     "crypto": "^1.0.1",
     "crypto-browserify": "^3.12.0",
     "electron": "^30.0.1",
+    "eslint": "^8.57.0",
     "formik": "^2.4.5",
     "fs": "^0.0.1-security",
     "fs-jetpack": "^5.1.0",
@@ -48,7 +49,8 @@
     "eject": "react-scripts eject",
     "electron:serve": "concurrently  \"wait-on http://localhost:3000 && electron .\" \"cross-env BROWSER=none npm run start\"",
     "electron:build": "",
-    "electron:start": ""
+    "electron:start": "",
+    "lint": "npx eslint ./src"
   },
   "eslintConfig": {
     "extends": [

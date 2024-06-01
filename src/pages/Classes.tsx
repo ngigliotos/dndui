@@ -31,6 +31,7 @@ export function Classes() {
             </Row>
           );
         }
+        return undefined;
       })}
     </div>
   );

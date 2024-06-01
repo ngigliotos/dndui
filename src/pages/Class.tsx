@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { selectSpecificClass } from "../store/Classes";
 import { RootState } from "../store/store";
 import { List, Typography } from "antd";
@@ -23,7 +23,7 @@ export function Class() {
 
   const scrollWithOffset = (el: HTMLElement) => {
     const yCoordinate = el.getBoundingClientRect().top + window.scrollY;
-    const yOffset = -50;
+    const yOffset = -70;
     window.scrollTo({ top: yCoordinate + yOffset, behavior: "smooth" });
   };
 
@@ -33,7 +33,7 @@ export function Class() {
     doFirstSplit?: boolean
   ) => {
     let returnText = text
-      .replace(/{@.*?\ /g, "")
+      .replace(/{@.*? /g, "")
       .replace(/\|.*?}/g, "")
       .replaceAll("}", "");
 
@@ -109,6 +109,7 @@ export function Class() {
       } else {
         labeledData["features"] = classData.classFeatures.filter((feature) => {
           if (feature.level === i + 1) return feature.name;
+          return undefined;
         });
         classTablesColumns[1].push(labeledData);
       }

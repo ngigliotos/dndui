@@ -11,6 +11,11 @@ export const selectCharacters = createSelector(
   (characterState: ICharactersSliceState) => characterState.characters
 );
 
+export const selectInitialCharacters = createSelector(
+  charactersSliceSelector,
+  (characterState: ICharactersSliceState) => characterState.intialCharacters
+);
+
 export const selectSpecificCharacter = createSelector(
   [
     (state: RootState) => state.characters,
