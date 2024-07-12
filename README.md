@@ -15,5 +15,6 @@ All scripts are distributed under the MIT license.
 
 Unless mentioned otherwise, the art files `ac.png`, `init.png`, and `move.png` under `/images` are not available for personal or commercial use.
 
-- Artist: Linh Lê
-- Copyright: Linh Lê, ngigliotos
+- Artist: Linh, she did a great job, and is happy to do other commissions.
+- Copyright: Linh, ngigliotos
+- Artist Email: lhlinh0411@gmail.com
