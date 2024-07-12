@@ -1,0 +1,42 @@
+.race-variant-container {
+  display: flex;
+  justify-content: center;
+}
+
+.race-variant-select {
+  padding-left: 5px;
+  font-family: "bookletter";
+  letter-spacing: 2px;
+  min-width: 100px;
+}
+
+.race-bonuses-title {
+  font-family: "Vinque";
+  color: #eba7b8;
+  font-size: 20px;
+  letter-spacing: 1px;
+  margin-bottom: 10px;
+  padding-right: 5px;
+}
+
+.race-description-container {
+  border: solid 2px white;
+  border-radius: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.race-descriptions-title {
+  margin-top: 20px;
+  font-family: "Vinque";
+  color: #eba7b8 !important;
+  font-size: 40px;
+  letter-spacing: 1px;
+}
+
+.race-fluff-entry {
+  font-family: "bookletter";
+  color: #eba7b8 !important;
+  font-size: 20px;
+  letter-spacing: 1px;
+}

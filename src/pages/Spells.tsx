@@ -129,7 +129,6 @@ export function Spells() {
       render: (text, record) => record.classes.join(", "),
       filters: classes,
       onFilter: (value, record) => {
-        console.log(record);
         return record.classes.includes((value as ClassNames).toLowerCase());
       },
     },

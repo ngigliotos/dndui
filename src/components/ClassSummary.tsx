@@ -2,28 +2,28 @@ import { Typography } from "antd";
 import { Link } from "react-router-dom";
 import ROUTES from "../constants/routes";
 
-export function ClassSummary(props: { classInfo: IClassInfo }) {
-  const formatSavingThrows = (saves: string[]) => {
-    return saves.map((save) => {
-      switch (save) {
-        case "str":
-          return "Strength";
-        case "dex":
-          return "Dexterity";
-        case "con":
-          return "Constitution";
-        case "wis":
-          return "Wisdom";
-        case "int":
-          return "Intelligence";
-        case "cha":
-          return "Charisma";
-        default:
-          return "";
-      }
-    });
-  };
+export function formatSavingThrows(saves: string[]) {
+  return saves.map((save) => {
+    switch (save) {
+      case "str":
+        return "Strength";
+      case "dex":
+        return "Dexterity";
+      case "con":
+        return "Constitution";
+      case "wis":
+        return "Wisdom";
+      case "int":
+        return "Intelligence";
+      case "cha":
+        return "Charisma";
+      default:
+        return "";
+    }
+  });
+}
 
+export function ClassSummary(props: { classInfo: IClassInfo }) {
   const joinEntries = (entries: any[]) => {
     return entries.filter((entry) => typeof entry === "string").join(" ");
   };

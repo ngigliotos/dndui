@@ -7,6 +7,7 @@ import { useSelector } from "react-redux";
 import { fetchSpells } from "../store/Spells";
 import { Link, useLocation } from "react-router-dom";
 import { fetchClasses } from "../store/Classes";
+import { fetchRaces } from "../store/Races";
 
 export function HeaderContent() {
   const dispatch = useAppDispatch();
@@ -48,10 +49,27 @@ export function HeaderContent() {
         console.log(e);
         return true;
       });
+    dispatch(fetchRaces())
+      .unwrap()
+      .catch(async (e) => {
+        console.log(e);
+        return true;
+      });
   }, [dispatch]);
 
   return (
     <div className="header-content">
+      <Link to={ROUTES.races} className="header-link">
+        <Button
+          className={
+            isActiveLink(ROUTES.races)
+              ? "start-new-char-button-selected"
+              : "start-new-char-button"
+          }
+        >
+          Races
+        </Button>
+      </Link>
       <Link to={ROUTES.spells} className="header-link">
         <Button
           className={

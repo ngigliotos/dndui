@@ -72,6 +72,61 @@ declare interface ISavingThrowProficiencies {
   charisma: boolean;
 }
 
+declare interface IRaceInfo {
+  name: string;
+  size: string;
+  source: string;
+  speed: {
+    walk?: number;
+    fly?: number;
+    swim?: number;
+  };
+  abilityBonus?: IAbilityBonus;
+  age?: {
+    mature?: number;
+    max?: number;
+  };
+  darkvision?: number;
+  languageProfs: string[];
+  weaponProfs: string[];
+  skillProficiencies: string[];
+  numOfSkillsToChoose?: number;
+  entries: IRaceFeature[];
+  additionalSpells?: IAdditionalSpell[];
+  resist?: string[];
+  fluff?: string[];
+}
+
+declare interface IAdditionalSpell {
+  name: string;
+  level?: number;
+  howItsKnown: string;
+  chooseSpellAbility: boolean;
+  spellCastingAbility: string[] | string;
+  howOften: string;
+}
+
+declare interface IRaceFeature {
+  name: string;
+  entries: string[];
+  type: string;
+}
+
+declare interface IAbilityBonus {
+  str?: number;
+  dex?: number;
+  con?: number;
+  wis?: number;
+  int?: number;
+  cha?: number;
+  choose?: IAbilityChooseOptions;
+}
+
+declare interface IAbilityChooseOptions {
+  count: number;
+  from: string[];
+}
+
 type savingThrowProficiencyTypes =
   | "strength"
   | "dexterity"

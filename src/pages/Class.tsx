@@ -116,6 +116,30 @@ export function Class() {
     }
   });
 
+  //THIS IS HERE FOR FIGHTER BECAUSE THE DATA IS INCONSITENT WTF
+  if (classData && !classData.tableData) {
+    classTablesColumns[1] = [];
+    classData?.classFeatures.forEach((feature) => {
+      let existingEntry = classTablesColumns[1].find(
+        (col) => col.Level == feature.level
+      );
+      if (!existingEntry) {
+        classTablesColumns[1].push({
+          Level: feature.level,
+        });
+      }
+      existingEntry = classTablesColumns[1].find(
+        (col) => col.Level == feature.level
+      );
+      if (!existingEntry["features"]) {
+        existingEntry["features"] = [];
+      }
+
+      existingEntry["features"].push(feature);
+    });
+    classTablesColumns[1].sort((col, col2) => col.Level - col2.Level);
+  }
+
   //Inject level in
   classTablesColumns[0].unshift({
     title: <Typography.Text>Level</Typography.Text>,

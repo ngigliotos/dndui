@@ -8,8 +8,10 @@ import Classes from "./Classes";
 import ScrollToTop from "../components/ScrollToTop";
 import { useSelector } from "react-redux";
 import { selectCharacters } from "../store/Characters";
+import Races from "./Races";
+import { Race } from "./Race";
 
-const { character, root, spells, classes, classInfo } = ROUTES;
+const { character, root, spells, classes, classInfo, races, raceInfo } = ROUTES;
 
 function Pages() {
   const characters = useSelector(selectCharacters);
@@ -32,6 +34,11 @@ function Pages() {
         <Route path={spells} element={<Spells />} />
         <Route path={classes} element={<Classes />} />
         <Route path={`${classInfo}/:class`} element={<Class />}></Route>
+        <Route path={races} element={<Races />} />
+        <Route
+          path={`${raceInfo}/:raceName/:variantName`}
+          element={<Race />}
+        ></Route>
       </Routes>
     </Header>
   );

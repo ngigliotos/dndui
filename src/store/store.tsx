@@ -3,12 +3,14 @@ import { charactersReducer } from "./Characters";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 import { spellsReducer } from "./Spells";
 import { classesReducer } from "./Classes";
+import { racesReducer } from "./Races";
 
 export const storeOptions = {
   reducer: {
     characters: charactersReducer,
     spells: spellsReducer,
     classes: classesReducer,
+    races: racesReducer,
   },
 };
 

@@ -24,7 +24,10 @@ export function Suggestions(props: {
         ref={inputRef}
         onFocus={(e) => setShowSuggestions(true)}
         onBlur={(e) => {
-          if (props.name) props.methods.setValue("class", e.target.value);
+          if (props.name === "class")
+            props.methods.setValue("class", e.target.value);
+          if (props.name === "race")
+            props.methods.setValue("race", e.target.value);
           if (!(e.relatedTarget?.tagName.toLowerCase() === "li")) {
             setShowSuggestions(false);
           }
@@ -45,6 +48,7 @@ export function Suggestions(props: {
             } else setShowSuggestions(false);
           }
         }}
+        spellCheck={false}
       ></Input>
 
       {showSuggestions && (

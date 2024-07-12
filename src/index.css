@@ -122,6 +122,18 @@ body {
   letter-spacing: 1px;
 }
 
+.race-input {
+  max-width: 200px;
+  text-align: left;
+  border-radius: 5px;
+  margin-left: 0; /* Adjust the margin-left to 0 to align with the label */
+  color: black;
+  font-family: "Vinque";
+  background-color: rgb(92, 89, 85);
+  font-size: large;
+  letter-spacing: 1px;
+}
+
 .name-input {
   text-align: left;
   border-radius: 5px;

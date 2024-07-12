@@ -20,6 +20,7 @@ import { selectClasses } from "../store/Classes";
 import { Controller, useForm } from "react-hook-form";
 import Suggestions from "../components/Suggestions";
 import { ExportOutlined } from "@ant-design/icons";
+import { selectAllRacesWithVariants, selectRaces } from "../store/Races";
 
 export function Character(props: {
   characters: { [key: string]: ICharacter };
@@ -53,6 +54,7 @@ export function Character(props: {
 
   const watchHasSpells = watch("hasSpells");
   const watchClass = watch("class");
+  const watchRace = watch("race");
 
   const spells = useSelectSpells();
   const [spellOptions] = React.useState(
@@ -61,6 +63,11 @@ export function Character(props: {
   const classes = useSelector(selectClasses);
   const [classOptions, setClassOptions] = useState<string[]>([]);
   const [currClass, setCurrClass] = useState<string>("");
+
+  const races = useSelector(selectAllRacesWithVariants);
+  const [raceOptions, setRaceOptions] = useState<string[]>([]);
+  const [currRace, setCurrRace] = useState<string>("");
+
   const [showDeleteModal, setShowDeleteModal] = useState(false);
 
   const onSubmit = handleSubmit((data) => {
@@ -108,6 +115,17 @@ export function Character(props: {
     );
   };
 
+  //This complex class control flow exists because without it, the
+  //input component is laggy.
+  const onRaceSelect = (value: string) => {
+    setCurrRace(value);
+    setRaceOptions(
+      Object.keys(races).filter(
+        (raceItem) => raceItem.toLowerCase().indexOf(value.toLowerCase()) > -1
+      )
+    );
+  };
+
   useEffect(() => {
     setCurrClass(watchClass);
     if (watchClass) {
@@ -118,7 +136,16 @@ export function Character(props: {
         )
       );
     }
-  }, [watchClass, classes]);
+    if (watchRace) {
+      setCurrRace(watchRace);
+      setRaceOptions(
+        Object.keys(races).filter(
+          (raceItem) =>
+            raceItem.toLowerCase().indexOf(watchRace.toLowerCase()) > -1
+        )
+      );
+    }
+  }, [watchClass, classes, watchRace, races]);
 
   return (
     <div
@@ -127,6 +154,7 @@ export function Character(props: {
         //onBlur `addCharacter`. So we set class here instead.
         let charToAdd = getValues();
         charToAdd.class = currClass;
+        charToAdd.race = currRace;
         dispatch(charactersSlice.actions.addCharacter(charToAdd));
       }}
       className="page-container"
@@ -174,13 +202,39 @@ export function Character(props: {
             ></Suggestions>
           </div>
         </div>
-        <LabeledInput
-          type="string"
-          labelName="Race"
-          name="race"
-          className="class-input"
-          methods={methods}
-        ></LabeledInput>
+        <div className="input-with-label">
+          <div className="class-link-container">
+            <label>Race</label>
+            <Link
+              to={`${ROUTES.raceInfo}/${watchRace?.split("-")[0]}/${
+                watchRace?.split("-")[1]
+              }`}
+            >
+              <Button
+                type="text"
+                disabled={
+                  !Object.keys(races).find(
+                    (race) => race.toLowerCase() === watchRace?.toLowerCase()
+                  )
+                }
+                size="small"
+                icon={<ExportOutlined />}
+              />
+            </Link>
+          </div>
+
+          <div style={{ display: "block" }}>
+            <Suggestions
+              methods={methods}
+              options={raceOptions}
+              inputValue={currRace}
+              onSelect={onRaceSelect}
+              filterFunction={onRaceSelect}
+              className="race-input"
+              name="race"
+            ></Suggestions>
+          </div>
+        </div>
         <LabeledInput
           type="number"
           labelName="Level"

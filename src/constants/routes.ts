@@ -5,6 +5,8 @@ const ROUTES = {
   spells: "/spells,",
   classes: "/classes",
   classInfo: "/class",
+  races: "/races",
+  raceInfo: "/race",
 };
 
 export const makeRoute = (...parts: string[]) => {
