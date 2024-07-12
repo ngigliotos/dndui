@@ -15,7 +15,7 @@ export function StatBlock(props: {
     if (statObj) {
       statObj.style.left = statNameLeft;
     }
-  }, []); // Empty dependency array ensures this effect runs only once on mount
+  }, [props.statName]);
 
   return (
     <div className="stat-parent-div">

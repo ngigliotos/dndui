@@ -1,7 +1,6 @@
 import { Input, InputRef } from "antd";
-import { CheckboxChangeEvent } from "antd/es/checkbox";
 import { useRef, useState } from "react";
-import { Controller, UseFormReturn } from "react-hook-form";
+import { UseFormReturn } from "react-hook-form";
 
 export function Suggestions(props: {
   options: string[];

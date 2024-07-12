@@ -2,10 +2,12 @@ import { PayloadAction } from "@reduxjs/toolkit";
 
 export interface ICharactersSliceState {
   characters: { [id: string]: ICharacter };
+  intialCharacters: { [id: string]: ICharacter };
 }
 
 export const initialState: ICharactersSliceState = {
   characters: {},
+  intialCharacters: {},
 };
 
 export const emptyCharacter: ICharacter = {
@@ -35,16 +37,22 @@ export const emptyCharacter: ICharacter = {
     wisdom: false,
     charisma: false,
   },
-  hasSpells: false,
+  hasSpells: true,
   spells: [],
   remainingHitDie: "0",
   spellSlots: {},
   attacks: [],
+  languages: "",
+  items: "",
+  details: "",
+  otherProfs: "",
 };
 
 export const getCharactersPending = (state: ICharactersSliceState) => ({
   ...state,
-  characters: {},
+  characters:
+    Object.entries(state.characters).length === 0 ? {} : state.characters,
+  intialCharacters: {},
 });
 
 export const getCharactersSuccess: (
@@ -62,15 +70,31 @@ export const getCharactersSuccess: (
     }
   });
 
+  console.log(Object.entries(state.characters).length === 0);
+
   return {
     ...state,
-    characters: charMap,
+    characters:
+      Object.entries(state.characters).length === 0
+        ? charMap
+        : state.characters,
+    intialCharacters: charMap,
   };
 };
 
+export const addCharacter = (
+  state: ICharactersSliceState,
+  { payload }: PayloadAction<ICharacter>
+): void => {
+  //Id should always exist here
+  if (payload.id) {
+    state.characters[payload.id] = payload;
+  }
+};
 export const removeCharacter = (
   state: ICharactersSliceState,
   { payload }: PayloadAction<string>
 ): void => {
-  delete state.characters[payload];
+  let characters = state.characters;
+  delete characters[payload];
 };

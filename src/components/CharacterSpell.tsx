@@ -1,7 +1,7 @@
-import { Button, ConfigProvider, Input, InputRef, List, Select } from "antd";
+import { Button, ConfigProvider, Input, List } from "antd";
 import SpellDropdown from "./SpellDropdown";
 
-import { memo, useEffect, useMemo, useRef, useState } from "react";
+import { memo, useEffect, useMemo, useState } from "react";
 import { Controller, UseFormReturn } from "react-hook-form";
 import Suggestions from "./Suggestions";
 import { useSelector } from "react-redux";
@@ -62,20 +62,18 @@ const CharacterSpell = memo(function CharacterSpellFunc(props: {
   );
 
   const enterFunction = (e: React.KeyboardEvent<HTMLInputElement>): boolean => {
-    {
-      let value = e.currentTarget.value;
-      if (
-        value in props.spells &&
-        spells[value].level === props.spellLevel &&
-        !watchSpells.includes(value)
-      ) {
-        props.methods.setValue("spells", [...watchSpells, value]);
+    let value = e.currentTarget.value;
+    if (
+      value in props.spells &&
+      spells[value].level === props.spellLevel &&
+      !watchSpells.includes(value)
+    ) {
+      props.methods.setValue("spells", [...watchSpells, value]);
 
-        setCurrSpellName("");
-        return false;
-      }
-      return true;
+      setCurrSpellName("");
+      return false;
     }
+    return true;
   };
 
   return (

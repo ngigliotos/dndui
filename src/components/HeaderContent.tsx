@@ -1,8 +1,8 @@
-import { Button, Input } from "antd";
+import { Button } from "antd";
 import ROUTES from "../constants/routes";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect } from "react";
 import { useAppDispatch } from "../store/store";
-import { charactersSliceSelector, fetchCharacters } from "../store/Characters";
+import { fetchCharacters, selectCharacters } from "../store/Characters";
 import { useSelector } from "react-redux";
 import { fetchSpells } from "../store/Spells";
 import { Link, useLocation } from "react-router-dom";
@@ -11,7 +11,7 @@ import { fetchClasses } from "../store/Classes";
 export function HeaderContent() {
   const dispatch = useAppDispatch();
 
-  const { characters } = useSelector(charactersSliceSelector);
+  const characters = useSelector(selectCharacters);
 
   const location = useLocation();
 
@@ -54,7 +54,7 @@ export function HeaderContent() {
 
   return (
     <div className="header-content">
-      <Link to={ROUTES.spells}>
+      <Link to={ROUTES.spells} className="header-link">
         <Button
           className={
             isActiveLink(ROUTES.spells)
@@ -65,7 +65,15 @@ export function HeaderContent() {
           Spells
         </Button>
       </Link>
-      <Link to={ROUTES.classes}>
+      <Link
+        className="header-link"
+        to={ROUTES.classes}
+        onClick={(e) => {
+          if (window.location.hash.includes("/character/")) {
+            console.log(window.location.hash);
+          }
+        }}
+      >
         <Button
           className={
             isActiveLink(ROUTES.classes)
@@ -76,7 +84,15 @@ export function HeaderContent() {
           Classes
         </Button>
       </Link>
-      <Link to={ROUTES.character + "/"}>
+      <Link
+        className="header-link"
+        to={ROUTES.character + "/"}
+        onClick={(e) => {
+          if (window.location.hash.includes("/character/")) {
+            console.log(window.location.hash);
+          }
+        }}
+      >
         <Button
           className={
             isActiveLink(ROUTES.character, false)
@@ -89,7 +105,11 @@ export function HeaderContent() {
       </Link>
       {Object.entries(characters).map((char) => {
         return (
-          <Link to={`${ROUTES.character}/${char[0]}`} key={char[1].name}>
+          <Link
+            to={`${ROUTES.character}/${char[0]}`}
+            key={char[1].name}
+            className="header-link"
+          >
             <Button
               key={`char-button${char[1].name}`}
               className={

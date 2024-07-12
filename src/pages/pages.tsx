@@ -1,7 +1,6 @@
-import { HashRouter, Navigate, Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import ROUTES from "../constants/routes";
 import Character from "./Character";
-import { Start } from "./Start";
 import Header from "../components/Header";
 import { Spells } from "./Spells";
 import { Class } from "./Class";
@@ -10,7 +9,7 @@ import ScrollToTop from "../components/ScrollToTop";
 import { useSelector } from "react-redux";
 import { selectCharacters } from "../store/Characters";
 
-const { character, root, start, spells, classes, classInfo } = ROUTES;
+const { character, root, spells, classes, classInfo } = ROUTES;
 
 function Pages() {
   const characters = useSelector(selectCharacters);
