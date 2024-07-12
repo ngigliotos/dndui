@@ -63,15 +63,7 @@ export function HeaderContent() {
           Spells
         </Button>
       </Link>
-      <Link
-        className="header-link"
-        to={ROUTES.classes}
-        onClick={(e) => {
-          if (window.location.hash.includes("/character/")) {
-            console.log(window.location.hash);
-          }
-        }}
-      >
+      <Link className="header-link" to={ROUTES.classes}>
         <Button
           className={
             isActiveLink(ROUTES.classes)
@@ -82,15 +74,7 @@ export function HeaderContent() {
           Classes
         </Button>
       </Link>
-      <Link
-        className="header-link"
-        to={ROUTES.character + "/"}
-        onClick={(e) => {
-          if (window.location.hash.includes("/character/")) {
-            console.log(window.location.hash);
-          }
-        }}
-      >
+      <Link className="header-link" to={ROUTES.character + "/"}>
         <Button
           className={
             isActiveLink(ROUTES.character, false)

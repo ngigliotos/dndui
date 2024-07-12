@@ -70,8 +70,6 @@ export const getCharactersSuccess: (
     }
   });
 
-  console.log(Object.entries(state.characters).length === 0);
-
   return {
     ...state,
     characters:

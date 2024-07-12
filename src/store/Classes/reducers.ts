@@ -22,7 +22,6 @@ export const getClassesSuccess: (
 ) => {
   const { payload } = action;
 
-  console.log(payload);
   return {
     ...state,
     classes: payload,

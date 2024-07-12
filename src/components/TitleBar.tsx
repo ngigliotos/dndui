@@ -1,16 +1,21 @@
 import {
+  ArrowLeftOutlined,
+  ArrowRightOutlined,
   CloseOutlined,
   MinusOutlined,
   MinusSquareOutlined,
   PlusSquareOutlined,
+  ReloadOutlined,
 } from "@ant-design/icons";
 import { Button, Modal, Typography } from "antd";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import { selectCharacters, selectInitialCharacters } from "../store/Characters";
+import { useNavigate } from "react-router-dom";
 
 export function TitleBar() {
   const { ipcRenderer } = window.require("electron");
+  const navigator = useNavigate();
 
   const [isFocused, setIsFocused] = useState(true);
   const [showModal, setShowModal] = useState<boolean>(false);
@@ -20,12 +25,27 @@ export function TitleBar() {
   const characters = useSelector(selectCharacters);
   const initialCharacters = useSelector(selectInitialCharacters);
 
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
+  const refresheButtonRef = useRef<HTMLButtonElement>(null);
+
   ipcRenderer.on("unFocused", (e: any) => {
     setIsFocused(false);
   });
 
   ipcRenderer.on("focused", (e: any) => {
     setIsFocused(true);
+  });
+
+  //This will trigger on `Ctrl+W`. We want to close the app by clicking the close button
+  //but we need to focus first to ensure any elements that save onBlur are saved.
+  ipcRenderer.on("close-keybind-triggered", (e: any) => {
+    closeButtonRef.current?.focus();
+    closeButtonRef.current?.click();
+  });
+
+  ipcRenderer.on("refresh-keybind-triggered", (e: any) => {
+    refresheButtonRef.current?.focus();
+    closeButtonRef.current?.click();
   });
 
   useEffect(() => {
@@ -90,34 +110,68 @@ export function TitleBar() {
       ></Modal>
 
       <div className={isFocused ? "title-bar-in-focus" : "title-bar"}>
-        <Button
-          className={
-            isFocused ? "title-bar-button-in-focus" : "title-bar-button"
-          }
-          icon={<MinusOutlined />}
-          onClick={(e) => {
-            ipcRenderer.invoke("minimize-event");
-          }}
-        ></Button>
-
-        <Button
-          className={
-            isFocused ? "title-bar-button-in-focus" : "title-bar-button"
-          }
-          icon={isMaximized ? <MinusSquareOutlined /> : <PlusSquareOutlined />}
-          onClick={(e) => {
-            setIsMaximized(ipcRenderer.sendSync("maximize-event"));
-          }}
-        ></Button>
-        <Button
-          className={
-            isFocused ? "title-bar-button-x-in-focus" : "title-bar-button-x"
-          }
-          icon={<CloseOutlined />}
-          onClick={(e) => {
-            window.close();
-          }}
-        ></Button>
+        <div>
+          <Button
+            ref={refresheButtonRef}
+            className={
+              isFocused ? "title-bar-button-in-focus" : "title-bar-button"
+            }
+            icon={<ArrowLeftOutlined />}
+            onClick={(e) => {
+              navigator(-1);
+            }}
+          ></Button>
+          <Button
+            className={
+              isFocused ? "title-bar-button-in-focus" : "title-bar-button"
+            }
+            icon={<ArrowRightOutlined />}
+            onClick={(e) => {
+              navigator(+1);
+            }}
+          ></Button>
+          <Button
+            className={
+              isFocused ? "title-bar-button-in-focus" : "title-bar-button"
+            }
+            icon={<ReloadOutlined />}
+            onClick={(e) => {
+              ipcRenderer.invoke("refresh-event");
+            }}
+          ></Button>
+        </div>
+        <div>
+          <Button
+            className={
+              isFocused ? "title-bar-button-in-focus" : "title-bar-button"
+            }
+            icon={<MinusOutlined />}
+            onClick={(e) => {
+              ipcRenderer.invoke("minimize-event");
+            }}
+          ></Button>
+          <Button
+            className={
+              isFocused ? "title-bar-button-in-focus" : "title-bar-button"
+            }
+            icon={
+              isMaximized ? <MinusSquareOutlined /> : <PlusSquareOutlined />
+            }
+            onClick={(e) => {
+              setIsMaximized(ipcRenderer.sendSync("maximize-event"));
+            }}
+          ></Button>
+          <Button
+            ref={closeButtonRef}
+            className={
+              isFocused ? "title-bar-button-x-in-focus" : "title-bar-button-x"
+            }
+            icon={<CloseOutlined />}
+            onClick={(e) => {
+              window.close();
+            }}
+          ></Button>
+        </div>
       </div>
     </div>
   );

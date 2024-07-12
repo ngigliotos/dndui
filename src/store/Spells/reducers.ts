@@ -53,8 +53,6 @@ export const getSpellsSuccess: (
     spellOptions.push({ value: spell.name, label: spell.name });
   });
 
-  console.log(spellDict);
-
   return {
     ...state,
     spells: spellDict,
