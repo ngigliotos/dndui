@@ -20,6 +20,10 @@ declare interface ICharacter {
   spells: string[];
   remainingHitDie: string;
   spellSlots: { [key: number]: ISpellSlot };
+  languages: string;
+  items: string;
+  details: string;
+  otherProfs: string;
 }
 
 declare interface ISpellSlot {

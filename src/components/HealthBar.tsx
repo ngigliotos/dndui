@@ -10,7 +10,7 @@ export function HealthBar(props: {
   const watchMaxHealth = props.methods.watch("maxHealth");
   const watchTempHealth = props.methods.watch("tempHealth");
   const classes = useSelector(selectClasses);
-  const currClass = classes[props.methods.getValues("class")];
+  const currClass: string | undefined = props.methods.getValues("class");
   const healthBarPercentageCalc = () => {
     let health =
       watchCurrHealth > 0 ? (watchCurrHealth / watchMaxHealth) * 100 : 0;
@@ -103,7 +103,9 @@ export function HealthBar(props: {
         <div className="hp-hit-die-container">
           Remaining Hit Die{"\n"}{" "}
           <span className="hp-hit-die">
-            {currClass ? `(d${currClass.hdFace})` : ""}
+            {currClass && classes[currClass.toLowerCase()]
+              ? `(d${classes[currClass.toLowerCase()].hdFace})`
+              : ""}
           </span>
           <div>
             <Controller
