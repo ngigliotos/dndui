@@ -117,7 +117,11 @@ export function Spells() {
     splitdesc.forEach((value) => {
       if (value.startsWith("@damage ")) {
         let damageStr = value.split(" ")[1];
-        parsedDesc.push(<a className="stand-out-text">{damageStr}</a>);
+        parsedDesc.push(
+          <Typography.Text className="stand-out-text">
+            {damageStr}
+          </Typography.Text>
+        );
       } else {
         parsedDesc.push(value);
       }

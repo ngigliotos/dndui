@@ -33,7 +33,7 @@ export function Class() {
     doFirstSplit?: boolean
   ) => {
     let returnText = text
-      .replace(/{@.*?\ /g, "")
+      .replace(/{@.*? /g, "")
       .replace(/\|.*?}/g, "")
       .replaceAll("}", "");
 
@@ -109,6 +109,7 @@ export function Class() {
       } else {
         labeledData["features"] = classData.classFeatures.filter((feature) => {
           if (feature.level === i + 1) return feature.name;
+          return undefined;
         });
         classTablesColumns[1].push(labeledData);
       }

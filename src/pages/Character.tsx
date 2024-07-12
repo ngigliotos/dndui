@@ -41,14 +41,7 @@ export function Character(props: {
   };
 
   const methods = useForm<ICharacter>({ reValidateMode: "onSubmit" });
-  const {
-    setValue,
-    handleSubmit,
-    formState: { errors },
-    reset,
-    getValues,
-    watch,
-  } = methods;
+  const { setValue, handleSubmit, reset, getValues, watch } = methods;
 
   useEffect(() => {
     let initialCharacter = {
@@ -56,11 +49,10 @@ export function Character(props: {
       ...character,
     };
     reset(initialCharacter);
-  }, [character, emptyCharacter, reset]);
+  }, [character, reset]);
 
   const watchHasSpells = watch("hasSpells");
   const watchClass = watch("class");
-  const watchChar = watch();
 
   const spells = useSelectSpells();
   const [spellOptions] = React.useState(
@@ -137,12 +129,16 @@ export function Character(props: {
         )
       );
     }
-  }, [watchClass]);
+  }, [watchClass, classes]);
 
   return (
     <div
       onBlur={(e) => {
-        dispatch(charactersSlice.actions.addCharacter(watchChar));
+        //Class autocomplete creates a race condition between suggestion onBlur `setValue` and this
+        //onBlur `addCharacter`. So we set class here instead.
+        let charToAdd = getValues();
+        charToAdd.class = currClass;
+        dispatch(charactersSlice.actions.addCharacter(charToAdd));
       }}
       className="page-container"
     >
