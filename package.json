@@ -1,0 +1,74 @@
+{
+  "name": "dndui",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@ant-design/icons": "^5.3.7",
+    "@electron/remote": "github:electron/remote",
+    "@reduxjs/toolkit": "^2.2.3",
+    "@testing-library/jest-dom": "^5.17.0",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^13.5.0",
+    "@types/jest": "^27.5.2",
+    "@types/node": "^16.18.96",
+    "@types/react": "^18.2.79",
+    "@types/react-dom": "^18.2.25",
+    "antd": "^5.16.4",
+    "axios": "^1.6.8",
+    "concurrently": "^8.2.2",
+    "cross-env": "^7.0.3",
+    "crypto": "^1.0.1",
+    "crypto-browserify": "^3.12.0",
+    "electron": "^30.0.1",
+    "formik": "^2.4.5",
+    "fs": "^0.0.1-security",
+    "fs-jetpack": "^5.1.0",
+    "os": "^0.1.2",
+    "path": "^0.12.7",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-hook-form": "^7.51.4",
+    "react-redux": "^9.1.1",
+    "react-router-dom": "^6.23.0",
+    "react-router-hash-link": "^2.4.3",
+    "react-scripts": "5.0.1",
+    "typescript": "^4.9.5",
+    "wait-on": "^7.2.0",
+    "web-vitals": "^2.1.4"
+  },
+  "browser": {
+    "crypto": false
+  },
+  "main": "public/main.js",
+  "homepage": "./",
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "electron:serve": "concurrently  \"wait-on http://localhost:3000 && electron .\" \"cross-env BROWSER=none npm run start\"",
+    "electron:build": "",
+    "electron:start": ""
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@types/react-router-hash-link": "^2.4.9"
+  }
+}
