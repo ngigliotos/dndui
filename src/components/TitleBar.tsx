@@ -45,7 +45,7 @@ export function TitleBar() {
 
   ipcRenderer.on("refresh-keybind-triggered", (e: any) => {
     refresheButtonRef.current?.focus();
-    closeButtonRef.current?.click();
+    refresheButtonRef.current?.click();
   });
 
   useEffect(() => {
@@ -112,7 +112,6 @@ export function TitleBar() {
       <div className={isFocused ? "title-bar-in-focus" : "title-bar"}>
         <div>
           <Button
-            ref={refresheButtonRef}
             className={
               isFocused ? "title-bar-button-in-focus" : "title-bar-button"
             }
@@ -131,6 +130,7 @@ export function TitleBar() {
             }}
           ></Button>
           <Button
+            ref={refresheButtonRef}
             className={
               isFocused ? "title-bar-button-in-focus" : "title-bar-button"
             }
